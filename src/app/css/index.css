@@ -1,0 +1,37 @@
+body {
+  background-color: #90ee90;
+}
+body .search-content {
+  position: absolute;
+  width: 300px;
+  height: 20px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+body .search-content input {
+  height: 20px;
+  width: 200px;
+  border: none;
+}
+body .search-content label {
+  background-color: #2bb92b;
+  font-size: 16px;
+}
+body .search-content .tip-box {
+  display: none;
+  width: 205px;
+  height: 100px;
+  overflow: auto;
+  background-color: #fff;
+}
+body .search-content .tip-box .tips-item {
+  list-style: none;
+  padding-top: 5px;
+  margin-top: 3px;
+}
+body .search-content .tip-box .active {
+  background-color: #66f2f2;
+}
