@@ -43,13 +43,14 @@ let matchedList = [];
 let lastKeyWord,tipsItemList, lastColoredItem, currentColoredItem;
 
 let instantTips = (keyWord) => {
+  let regExp1,tipsHtml;
     if (!keyWord) {
         console.log("no keyWords");
         tipsBox.style.display = "none";
         return;
     }
     tipsBox.style.display = "none";
-    let regExp1 = new RegExp(`${keyWord}`);
+    regExp1 = new RegExp(`${keyWord}`);
     data.forEach((value) => {
         if (value.match(regExp1) != null) {
             matchedList.push(value);
@@ -58,7 +59,7 @@ let instantTips = (keyWord) => {
     console.log(`matched item is : ${matchedList}`);
     if (matchedList.length) {
         tipsBox.style.display = "block";
-        let tipsHtml = "";
+        tipsHtml = "";
         matchedList.forEach((value, index) => {
             tipsHtml += `<li class="tips-item" index="${index}">${value}</li>`;
         });
@@ -73,7 +74,7 @@ let instantTips = (keyWord) => {
 };
 
 document.addEventListener('keyup', (event) => {
-    let keyNum = event.which;
+    let keyNum = event.which,keyWord;
     if (keyNum == 38) {
         lastColoredItem <= 0 ? currentColoredItem = tipsItemList.length - 1 : currentColoredItem--;
         tipsItemList[lastColoredItem].className = "tips-item";
@@ -87,13 +88,12 @@ document.addEventListener('keyup', (event) => {
         lastColoredItem = currentColoredItem;
         searchBox.value = matchedList[currentColoredItem];
     }else if(keyNum == 13) {
-        let keyWord = document.getElementById('searchBox').value;
+        keyWord = document.getElementById('searchBox').value;
     	window.open(`http://www.baidu.com/s?wd=${keyWord}`);
     } else {
-       let keyWord = document.getElementById('searchBox').value;
+       keyWord = document.getElementById('searchBox').value;
         console.log(`input char is ：${keyWord},keyCode is :${keyNum}`);
         matchedList.length = 0;
         instantTips(keyWord);
     }
 });
-

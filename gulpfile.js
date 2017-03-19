@@ -10,7 +10,7 @@ gulp.task('stylus', () => {
   return gulp.src('src/app/stylus/*.styl')
     .pipe(stylus())
     .pipe(autoprefixer())
-    .pipe(gulp.dest('src/app/css'))
+    .pipe(gulp.dest('dist/css/'))
     .pipe(browserSync.reload({
       stream: true
     }));
@@ -21,7 +21,7 @@ gulp.task('babel', () => {
         .pipe(babel({
             presets: ['es2015']
         }))
-        .pipe(gulp.dest('src/app/js2'))
+        .pipe(gulp.dest('dist/js/'))
         .pipe(browserSync.reload({
         stream: true
         }));
@@ -31,12 +31,12 @@ gulp.task('babel', () => {
 gulp.task('browserSync', () => {
   browserSync({
     server: {
-      baseDir: 'src/app'
+      baseDir: 'dist/'
     }
   })
 });
 gulp.task('watch', ['babel','browserSync', 'stylus'], function (){
   gulp.watch('src/app/stylus/**/*.styl', ['stylus']);
   gulp.watch('src/app/js/*.js', ['babel']);
-  gulp.watch('src/app/*.html', browserSync.reload);
+  gulp.watch('dist/*.html', browserSync.reload);
 });
